@@ -13,7 +13,16 @@ class FakeSearch:
 
     def search(self, **kwargs):
         assert kwargs["query"] == "How do cities reduce urban heat?"
-        return {"results": [{"title": "City climate plan", "url": "https://example.org/climate", "content": "Trees and cool roofs lower surface temperatures.", "score": 0.92}]}
+        return {
+            "results": [
+                {
+                    "title": "City climate plan",
+                    "url": "https://example.org/climate",
+                    "content": "Trees and cool roofs lower surface temperatures.",
+                    "score": 0.92,
+                }
+            ]
+        }
 
 
 class FakeOpenAI:
