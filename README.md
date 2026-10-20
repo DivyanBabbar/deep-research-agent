@@ -151,4 +151,3 @@ See [SECURITY.md](SECURITY.md) for reporting guidance.
 ## License
 
 MIT. See [LICENSE](LICENSE).
-
