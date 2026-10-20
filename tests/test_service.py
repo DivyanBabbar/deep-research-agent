@@ -1,4 +1,5 @@
 """Provider-mocked tests for the research service; no credentials or network required."""
+
 from types import SimpleNamespace
 
 import pytest
