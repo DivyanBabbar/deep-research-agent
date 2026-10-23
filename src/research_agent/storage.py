@@ -1,5 +1,6 @@
 import json
 import sqlite3
+from contextlib import closing
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -16,7 +17,7 @@ def _connect() -> sqlite3.Connection:
 
 
 def initialize_database() -> None:
-    with _connect() as connection:
+    with closing(_connect()) as connection, connection:
         connection.execute(
             """CREATE TABLE IF NOT EXISTS research_runs (
                 run_id TEXT PRIMARY KEY,
@@ -33,7 +34,7 @@ def initialize_database() -> None:
 
 
 def save_run(result: ResearchResponse) -> None:
-    with _connect() as connection:
+    with closing(_connect()) as connection, connection:
         connection.execute(
             "INSERT INTO research_runs(run_id, query, report, sources_json, created_at) "
             "VALUES (?, ?, ?, ?, ?)",
@@ -48,7 +49,7 @@ def save_run(result: ResearchResponse) -> None:
 
 
 def get_run(run_id: str) -> ResearchResponse | None:
-    with _connect() as connection:
+    with closing(_connect()) as connection, connection:
         row = connection.execute(
             "SELECT * FROM research_runs WHERE run_id = ?", (run_id,)
         ).fetchone()
@@ -64,7 +65,7 @@ def get_run(run_id: str) -> ResearchResponse | None:
 
 
 def list_runs(limit: int = 20) -> list[HistoryItem]:
-    with _connect() as connection:
+    with closing(_connect()) as connection, connection:
         rows = connection.execute(
             "SELECT run_id, query, created_at, sources_json FROM research_runs "
             "ORDER BY created_at DESC LIMIT ?",

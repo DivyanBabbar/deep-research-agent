@@ -21,7 +21,7 @@ Fieldnotes is a research desk for people who need more than a pile of search res
 
 ## Demo
 
-Start the app and open `http://localhost:8000`. Enter a research question or use a suggested prompt. API documentation is available at `/docs`.
+Open `http://127.0.0.1:8000`, choose one of the suggested questions, and select **Build my brief**. The app searches sources, compares their evidence, and shows a cited report beside the source cards. Use **Download Markdown** to export the report, or select a previous run in the left history panel. API documentation is available at `/docs`.
 
 ## Architecture
 
